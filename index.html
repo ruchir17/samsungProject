@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semphil Canteen</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-image: url("Assets/ogBg.JPG");
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        padding: 0% 5% 0% 5%;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+      nav ul li {
+        margin-right: 10px;
+      }
+      nav ul li a {
+        font-size: 16px;
+        color: #333;
+        text-decoration: none;
+      }
+      .item {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .grid-container {
+        max-height: 600px;
+        overflow: auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      .weeklyMenuList {
+        height: 100%;
+        width: 100%;
+        background-color: #222631;
+        color: white;
+        padding: 10px;
+        font-size: 10px;
+      }
+      .weeklyMenuListImageContainer {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .image-item {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .queryContainer {
+        height: 100%;
+        width: 100%;
+        margin-top: 5px;
+        background-color: #222631;
+        color: white;
+        padding: 10px;
+        font-size: 10px;
+        text-align: center;
+      }
+      .queryContainer a {
+        text-decoration: none;
+        color: white;
+      }
+      .queryImageContainer {
+        text-align: center;
+        height: 30%;
+        width: 30%;
+        margin: auto;
+      }
+      .menuOfDayContainer {
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(to top left, #ff0000, #650334);
+        color: white;
+        padding: 10px;
+        font-size: 10px;
+      }
+      .menuListcontainer {
+        text-align: center;
+        color: white;
+        font-size: 10px;
+      }
+      .menuHeaderTextContainer {
+        display: flex;
+        justify-content: space-between;
+      }
+      .date {
+        border: 1px solid white;
+        border-radius: 5px;
+      }
+      .menu {
+        margin-top: 15px;
+      }
+      .menu-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+      }
+      .menuItemImageContainer {
+        display: grid;
+        margin-top: 10px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .image-item {
+        position: relative;
+      }
+      .image-container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+      .mealReservationContainer {
+        position: relative;
+        width: 100%;
+      }
+
+      .grid-item-meal {
+        position: relative;
+        overflow: hidden;
+      }
+      .image {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .button-container {
+        position: absolute;
+        top: 68%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .button {
+        height: auto;
+        width: 8rem;
+        background-color: white;
+        color: #fca800;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .button:hover {
+        background-color: black;
+      }
+      .survey-container {
+        height: 45%;
+        width: 100%;
+        background-color: white;
+        color: black;
+        padding: 10px;
+        font-size: 10px;
+      }
+      .survey-body-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5%;
+      }
+      .survey-header {
+        display: flex;
+        align-items: center;
+      }
+      .survey-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+      }
+      .account-balance-container {
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        color: black;
+        padding: 10px;
+        font-size: 20px;
+        text-align: center;
+      }
+      .last-updated {
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .account-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        padding: 5px 10px;
+        border-top: 2px dotted #ccc;
+      }
+      .bal-logo {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .fav-container {
+        margin-top: 5%;
+        width: 100%;
+        background: linear-gradient(to bottom , #5f6dae, #8d6aae);
+        color: white;
+        padding: 10px;
+      }
+      .fav-header {
+        display: flex;
+        align-items: center;
+      }
+      .fav-container-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 2%;
+      }
+      .fav-item{
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid white;
+        border-radius: 5px;
+        margin-bottom: 5%;
+        padding: 5px;
+        font-size: 12px;
+      }
+      .fav-list-item{
+        display: flex;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <img src="Assets\logoNew.JPG" alt="Semphil Canteen Logo" />
+      </div>
+      <nav>
+        <ul>
+          <a href="">
+            <img
+              src="Assets\profileEdit.JPG"
+              alt="profile Edit"
+              height="30"
+              width="200"
+            />
+          </a>
+          <a href="">
+            <img
+              src="Assets\language.JPG"
+              alt="Language change"
+              height="30"
+              width="40"
+            />
+          </a>
+          <a href="">
+            <img
+              src="Assets\unKnown.JPG"
+              alt="unKnown"
+              height="30"
+              width="40"
+            />
+          </a>
+          <a href="">
+            <img
+              src="Assets\powerOff.JPG"
+              alt="Power Off"
+              height="30"
+              width="40"
+            />
+          </a>
+        </ul>
+      </nav>
+    </header>
+    <div class="grid-container">
+      <div class="grid-item">
+        <div class="item">
+          <div class="weeklyMenuList">
+            <b>Weekly Menu List</b>
+            <div class="weeklyMenuListImageContainer">
+              <a href=""
+                ><img
+                  class="image-item"
+                  src="Assets\localMenu.JPG"
+                  alt="menuList"
+              /></a>
+              <a href=""
+                ><img
+                  class="image-item"
+                  src="Assets\koreanMenu.JPG"
+                  alt="menuList"
+              /></a>
+              <a href=""
+                ><img
+                  class="image-item"
+                  src="Assets\specialMenu.JPG"
+                  alt="menuList"
+              /></a>
+              <a href=""
+                ><img
+                  class="image-item"
+                  src="Assets\healthyMenu.JPG"
+                  alt="menuList"
+              /></a>
+            </div>
+          </div>
+          <div class="queryContainer">
+            <a class="queryLink" href="">
+              <div class="queryImageContainer">
+                <img
+                  class="image-item"
+                  src="Assets\handLogo.JPG"
+                  alt="menuList"
+                  height="30"
+                  width="100"
+                />
+              </div>
+              Do you have a query or suggestion?
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="grid-item">
+        <div class="menuOfDayContainer">
+          <div class="menuHeaderTextContainer">
+            <b>Menu Of The Day</b>
+            <span class="date"> 13-01-2024 </span>
+          </div>
+          <div class="menu">
+            <div class="menu-item">
+              <span>Chicken adobo ................................. </span>
+              <span>35.00</span>
+            </div>
+            <div class="menu-item">
+              <span>Ginataang langka w/ dried fish ......... </span>
+              <span>20.00</span>
+            </div>
+            <div class="menu-item">
+              <span>Miswa patola ........................ </span>
+              <span>20.00/10.00</span>
+            </div>
+            <div class="menu-item">
+              <span>Upo & kalabasa guisado ........ </span>
+              <span>20.00/10.00</span>
+            </div>
+            <div class="menu-item">
+              <span>Spicy lumpiang shanghai ................. </span>
+              <span>31.00</span>
+            </div>
+            <div class="menu-item">
+              <span>Buko salad ....................................... </span>
+              <span>31.00</span>
+            </div>
+            <div class="menu-item">
+              <span>Pork menudo ................................... </span>
+              <span>31.00</span>
+            </div>
+            <div class="menu-item">
+              <span>Adobong isda ................................... </span>
+              <span>31.00</span>
+            </div>
+            <div class="menu-item">
+              <span>Tortang Wong ................................... </span>
+              <span>31.00</span>
+            </div>
+          </div>
+          <div class="menuItemImageContainer">
+            <div class="image-container">
+              <a href=""
+                ><img
+                  class="image-item"
+                  src="Assets\breakfast.JPG"
+                  alt="breakfast"
+              /></a>
+              Breakfast
+            </div>
+            <div class="image-container">
+              <a href=""
+                ><img class="image-item" src="Assets\snack.JPG" alt="snack"
+              /></a>
+              Lunch
+            </div>
+            <div class="image-container">
+              <a href=""
+                ><img class="image-item" src="Assets\lunch.JPG" alt="lunch"
+              /></a>
+              Snack
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid-item">
+        <div class="item">
+          <div class="grid-item-meal">
+            <div class="image">
+              <img
+                src="Assets\mealReservation.JPG"
+                alt="mealReservation"
+                width="100%"
+                height="auto"
+              />
+            </div>
+            <div class="button-container">
+              <button class="button">Book Now</button>
+            </div>
+          </div>
+          <div class="survey-container">
+            <div class="survey-header">
+              <img
+                src="Assets\surveyLogo.JPG"
+                alt="survey"
+                height="50"
+                width="30"
+              />
+              <div style="font-size: 15px; margin-left: 10%"><b>Survey</b></div>
+            </div>
+            <div class="survey-body-container">
+              <div class="survey-chart">
+                <img
+                  src="Assets\surveyChart.JPG"
+                  alt="survey"
+                  height="120"
+                  width="150"
+                />
+              </div>
+              <div class="survey-text">
+                <p style="color: #83afee; font-size: 12px">Anchovies</p>
+                <p style="color: #ed784b; font-size: 12px">Sausage</p>
+                <p style="color: #b3d195; font-size: 12px">Artichoke hearts</p>
+                <p style="color: #757374; font-size: 12px">Others</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid-item">
+        <div class="item">
+          <div class="account-balance-container">
+            <div><b>Account Balance</b></div>
+            <div style="color: red">
+              5947.99 <span style="font-size: 10px; color: black">PHP</span>
+            </div>
+            <div class="last-updated">
+              <img
+                src="Assets\lastUpdatedLogo.JPG"
+                alt="account"
+                height="30"
+                width="30"
+              />
+              <span style="margin-left: 2%">Last updated : 13-01-2024</span>
+            </div>
+            <div class="account-balance-body">
+              <div class="account-item">
+                <span>2019-05-204:52</span>
+                <span>FOSECA</span>
+                <span>55.9</span>
+              </div>
+              <div class="account-item">
+                <span>2019-05-204:52</span>
+                <span>FOSECA</span>
+                <span>55.9</span>
+              </div>
+              <div class="account-item">
+                <span>2019-05-204:52</span>
+                <span>FOSECA</span>
+                <span>55.9</span>
+              </div>
+            </div>
+            <div class="bal-logo">
+              <a href="">
+                <img
+                  src="Assets\balanceCalcLogo.JPG"
+                  alt="favor"
+                  height="30"
+                  width="30"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="fav-container">
+            <div class="fav-header">
+              <img
+                src="Assets\favLogo.JPG"
+                alt="fav"
+                height="50"
+                width="30"
+              />
+              <div style="font-size: 15px; margin-left: 5%"><b>My Favorites</b></div>
+            </div>
+            <div class="fav-container-body">
+              <div class="fav-item">
+                <div class="fav-list-item">
+                  <img
+                    src="Assets\geenIcon.JPG"
+                    alt="greenIcon"
+                    height="15"
+                    width="15"
+                  />
+                  <span style="margin-left: 5px;">Lumpiang Shungai</span>
+                </div>
+                <img
+                  src="Assets\fork.JPG"
+                  alt="fav"
+                  height="15"
+                  width="20"
+                />
+              </div>
+              <div class="fav-item">
+                <div class="fav-list-item">
+                  <img
+                    src="Assets\geenIcon.JPG"
+                    alt="greenIcon"
+                    height="15"
+                    width="15"
+                    style="visibility: hidden;"
+                  />
+                <span style="margin-left: 5px;">Chicken Afritada</span>
+                </div>
+              </div>
+              <div class="fav-item">
+                <div class="fav-list-item">
+                  <img
+                    src="Assets\geenIcon.JPG"
+                    alt="greenIcon"
+                    height="15"
+                    width="15"
+                  />
+                  <span style="margin-left: 5px;">Ginataang Papaya</span>
+                </div>
+                <img
+                  src="Assets\fork.JPG"
+                  alt="fav"
+                  height="15"
+                  width="20"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
